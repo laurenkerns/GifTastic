@@ -1,4 +1,3 @@
-
 //load JS document before loading page
 $(document).ready(function(){
 //Array of types of dogs for the beginning buttons
@@ -50,7 +49,7 @@ function displayGifs() {
     var dogName = $(this).attr("data-name");
     // dogName = "lab";
 //split methods will split the string into an array, and then add the "+" when j0ind back together 
-    var dogType = dogName.split(" ").join("+");
+    var dogType = dogName.split(" ");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + dogType + "&api_key=ZXuv30YURnGG9ruUgjnPviS9N9abfZWA&limit=10";
 
 
@@ -70,13 +69,16 @@ function displayGifs() {
             // delcare variable, creating a div, paragraph, image URL and dog imag on the fly
             var dogDiv = $("<div>");
             var p = $("<p class = 'rating'>").text("Rated: " + response.data[i].rating);
+            //image URL: grab the response and then within the object, bull the fixed height still 
             var imageURL = response.data[i].images.fixed_height_still.url;
+            //define and then create a image on the fly, and the source attricute with the defnined image URL
             var dogImage = $("<img>").attr("src", imageURL);
 
-
+        
             dogImage.addClass("gifs")
             dogImage.attr("src", response.data[i].images.fixed_height_still.url);
 
+            //append the paragraph with rating infomration and the dogImage to the dogDiv
             dogDiv.append(p);
             dogDiv.append(dogImage);
 
@@ -113,4 +115,6 @@ $(".gifs").on("click", function() {
 });
 
  
+
+
 
